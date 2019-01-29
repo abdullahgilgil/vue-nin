@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { bus } from '../main';
 
 export default {
    props: {
@@ -19,8 +20,9 @@ export default {
       }
    },
    methods: {
-      changeTitle: function(){
-         this.title = "Start-up for Vue js"
+      changeTitle : function () {
+         this.title = 'Vue Wizards';
+         bus.$emit('titleChanged', 'Vue Wizards'); 
       }
    }
 }
