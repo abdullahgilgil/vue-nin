@@ -1,41 +1,53 @@
 <template>
 <div>
-  <app-header v-bind:title="title"/>
-  <ninjas v-bind:ninjas="ninjas"/>
-  <app-footer v-bind:title="title"/>
+  <form-helper>
+    <h2 slot="title">{{ title }}</h2>
+    <p slot="desc">I am a slot paragraph</p>
+  </form-helper>
+  <hr>
+  <app-form>
+    <div slot="form-header">
+      <h3>This is title of the form</h3>
+      <p>Information about the form</p>
+    </div>
 
+    <div slot="form-fields">
+      <div>
+        <label for="">Name</label>
+        <input type="text" placeholder="Name" required>
+      </div>
+      <div>
+        <label for="">Password</label>
+        <input type="password" placeholder="Password" required>
+      </div>
+    </div>
+
+    <div slot="form-controls">
+      <button v-on:click='handleSubmit'>Submit</button>
+    </div>
+  </app-form>
 </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Footer from './components/Footer.vue'
-import Ninjas from './components/Ninjas.vue'
-
+import formHelper from './components/formHelper.vue';
+import Form from './components/Form'
 export default {
-  components: {
-    'app-header' : Header,
-    'app-footer' : Footer,
-    'ninjas' : Ninjas
+  components : {
+    'form-helper' : formHelper,
+    'app-form' : Form
   },
   data() {
     return {
-      ninjas: [
-        {name: 'Ryu', speciality: 'Vue Components', show: false},
-        {name: 'Crystal', speciality: 'HTML Wizardry', show: false},
-        {name: 'Hitoshi', speciality: 'Click Events', show: false},
-        {name: 'Tango', speciality: 'Conditionals', show: false},
-        {name: 'Kami', speciality: 'Webpack', show: false},
-        {name: 'Yoshi', speciality: 'Data Diggin', show: false},
-        {name: 'Sirac', speciality: 'Playing Games', show: false},
-        {name: 'Fatma', speciality: 'Make-up', show: false}
-      ],
-      title : "Vue Ninjas"
+      title : "I am a dynamic slot header from data"
     }
+  },
+  methods: {
+
   }
 }
 </script>
 
 <style>
-
+  
 </style>
